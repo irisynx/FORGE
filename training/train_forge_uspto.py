@@ -619,6 +619,24 @@ CONFIG.update({
     "resume_from_epoch":             0,
 })
 
+CONFIG.update({
+    "save_dir":                       "./results_editgnn_v34_E1_uspto_v3",
+    "warmstart_from":                 "./results_editgnn_v34_E1/model_best.pth",
+    "epochs":                         30,
+
+    "lr_rc":                          1e-4,
+    "rc_set_pred_lr":                 1e-4,
+    "lr_detr_edit_phase0":            1e-4,
+    "lr_detr_edit_phase1":            1e-4,
+    "detr_edit_init_from_v29_weight": False,
+
+    "rc_pos_weight":                  5.0,
+    "phase2_rc_pos_weight":           6.0,
+    "rc_hard_neg_weight":             5.0,
+    "rc_hard_neg_weight_end":         7.0,
+    "phase2_warmup_epochs":           5,
+})
+
 ATOM_FEATURE_DIMS = [120, 15, 15, 10, 10, 100, 10, 10]
 
 CLASS_TO_DELTA = torch.tensor([0.0, 1.0, -1.0, 2.0, -2.0, 3.0, -3.0])
@@ -8405,6 +8423,7 @@ def main():
                 "best_rc_f1": best_rc_f1,
                 "phase2_initialized": phase2_initialized,
                 "rc_temperature": CONFIG.get("rc_temperature", 1.0),
+                "ss_rc_threshold": CONFIG.get("ss_rc_threshold", 0.5),
                 "best_main_mol_acc": val_avg.get("main_mol_acc", 0.0),
                 "strict_mol_acc": val_avg.get("mol_acc", 0.0),
 
