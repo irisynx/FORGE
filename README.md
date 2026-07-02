@@ -153,12 +153,25 @@ FORGE is trained on public reaction datasets; no proprietary data is required.
 | Open Reaction Database (ORD) | https://open-reaction-database.org | Primary training / evaluation |
 | USPTO-480k (Jin split) | Public reaction-prediction benchmark | Cross-domain benchmark |
 
-The processed PyG `.pt` corpus and the pretrained encoder checkpoint
-(`model_epoch_200.pth`) are archived on Zenodo:
+The processed PyG `.pt` datasets and the model checkpoints are archived on Zenodo:
 
-> **Zenodo DOI:** `10.5281/zenodo.XXXXXXX` *(to be released with the paper)*
+> **Zenodo DOI:** [`10.5281/zenodo.21125167`](https://doi.org/10.5281/zenodo.21125167) *(record released with the paper)*
 
-The `preprocessing/` scripts regenerate the processed corpus from the public raw sources:
+The archive contains:
+
+| File | Contents | Extract to |
+| --- | --- | --- |
+| `ord_train.tar.zst` | ORD training set (PyG `.pt` chunks) | `./ord_data/ord_train/` |
+| `ord_heldout.tar.zst` | ORD held-out val/test set | `./ord_data/ord_heldout/` |
+| `uspto_480k.tar.zst` | USPTO-480k (train/valid/test) | `./uspto_480k/` |
+| `forge_pretrained_encoder.pth` | Pretrained GATv2 encoder | `./checkpoints/` |
+| `forge_ord_model.pth` | Trained ORD model | `./results_editgnn_v34_E1/` |
+| `forge_uspto_model.pth` | Trained USPTO model | — |
+
+Decompress a dataset with: `zstd -dc ord_train.tar.zst | tar -xf -`. The default `CONFIG`
+paths in the training scripts match the extraction locations above.
+
+Alternatively, the `preprocessing/` scripts regenerate the processed corpus from the public raw sources:
 `09_download_ord.py` fetches the ORD protobuf datasets, and `24_uspto_jin_to_pt.py`
 ingests the USPTO Jin split. The electronic-structure preprocessing (`00–04`) additionally
 consumes per-molecule quantum-chemical property files (DFT / xTB output) to build the
@@ -230,7 +243,7 @@ python preprocessing/28_uspto_chem_check.py
 ```
 
 **Output.** PyG `.pt` chunk files under a processed-data directory (e.g.
-`./ord_data/processed_ready_*/`) in the [format above](#reaction-data-format).
+`./ord_data/ord_train/`, `./ord_data/ord_heldout/`) in the [format above](#reaction-data-format).
 
 ### Stage 2 — Encoder pretraining
 

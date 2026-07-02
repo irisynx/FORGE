@@ -81,8 +81,8 @@ def is_main_process():
 CONFIG = {
     "device": None,
     "single_gpu": 0,
-    "data_dir": "./ord_data/processed_ready_20260512_v3_cleaned",
-    "val_dir":  "./ord_data/processed_val_20260512_v3_cleaned",
+    "data_dir": "./ord_data/ord_train",
+    "val_dir":  "./ord_data/ord_heldout",
     "elec_ckpt_path": "./checkpoints/model_epoch_200.pth",
     "save_dir": "./results_editgnn_v33_J",
     "data_ratio": 1.0,

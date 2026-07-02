@@ -81,8 +81,8 @@ def is_main_process():
 CONFIG = {
     "device": None,
     "single_gpu": 0,
-    "data_dir": "./ord_data/processed_ready_20260512_v3_cleaned",
-    "val_dir":  "./ord_data/processed_val_20260512_v3_cleaned",
+    "data_dir": "./ord_data/ord_train",
+    "val_dir":  "./ord_data/ord_heldout",
     "elec_ckpt_path": "./checkpoints/model_epoch_200.pth",
     "save_dir": "./results_editgnn_v33_J",
     "data_ratio": 1.0,
@@ -573,8 +573,8 @@ CONFIG.update({
 CONFIG.update({
 
     "save_dir":                       "./results_editgnn_v34_E1_uspto_v2",
-    "data_dir":                       "./uspto_480k_rxnmapped/train",
-    "val_dir":                        "./uspto_480k_rxnmapped/valid",
+    "data_dir":                       "./uspto_480k/train",
+    "val_dir":                        "./uspto_480k/valid",
     "warmstart_from":                 None,
     "resume_from_epoch":              0,
     "single_gpu":                     0,
