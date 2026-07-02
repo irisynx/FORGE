@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Model checkpoints & training artifacts
+*.pt
+*.pth
+*.npz
+*.npy
+checkpoints/
+results_*/
+runs/
+logs/
+
+# Data (obtain from the Zenodo archive / regenerate via preprocessing/)
+data/
+ord_data/
+uspto_*/
+scibert_local/
+*.csv
+
+# OS / editor
+.DS_Store
+*.swp

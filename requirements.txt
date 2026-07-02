@@ -1,0 +1,23 @@
+# Core deep-learning stack (pinned to the environment the released model was trained in)
+torch==2.4.0
+torch-geometric==2.7.0
+torch-scatter          # matched to the installed torch / CUDA build
+transformers==4.46.3
+
+# Chemistry
+rdkit==2025.09.3
+rxnmapper              # USPTO atom re-mapping (preprocessing step 25)
+
+# Scientific stack
+numpy==2.3.5
+pandas==2.3.3
+matplotlib             # pretraining diagnostic plots
+tqdm
+
+# Text / data-source parsing (preprocessing only)
+beautifulsoup4         # ORD HTML parsing (step 20)
+spacy                  # procedure-text verb extraction (step 21_3)
+# ord-schema           # required to read Open Reaction Database protobuf (step 09/20)
+
+# External (not pip-installable): xTB semi-empirical QC engine for steps 00-04
+# Install via conda:  conda install -c conda-forge xtb
